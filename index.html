@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Alfas - Portal de Acessos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --primary-gold: #d4af37;
+            --secondary-gold: #f8e9a9;
+            --text-light: #f5f5f5;
+            --text-gray: #aaaaaa;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --overlay-bg: rgba(0, 0, 0, 0.85);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            padding-bottom: 70px;
+            background-image: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), 
+                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23121212" width="100" height="100"/><path fill="%23d4af37" opacity="0.1" d="M0 0h100v100H0z"/><path fill="%23d4af37" opacity="0.15" d="M20 20h60v60H20z"/></svg>');
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header e Logo */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--primary-gold);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .slogan {
+            color: var(--text-gray);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* Barra de Pesquisa */
+        .search-bar {
+            background-color: var(--bg-card);
+            border: 2px solid var(--primary-gold);
+            border-radius: 50px;
+            padding: 12px 20px;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            width: 100%;
+            font-size: 1rem;
+            padding: 5px;
+            outline: none;
+        }
+
+        .search-bar i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Grid de Sites */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .site-item {
+            background-color: var(--bg-card);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+        }
+
+        .site-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-gold);
+        }
+
+        .site-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .site-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .site-desc {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Barra de Navegação Inferior */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--primary-gold);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-item.active, .nav-item:hover {
+            color: var(--primary-gold);
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .nav-center {
+            position: relative;
+            bottom: 15px;
+            background: linear-gradient(145deg, #d4af37, #f8e9a9);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #121212;
+            font-size: 1.5rem;
+        }
+
+        /* Overlays/Modais */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--overlay-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background-color: var(--bg-card);
+            border: 2px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .overlay.active .modal {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--primary-gold);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-gold);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--bg-dark);
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-type {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .contact-value {
+            font-weight: 500;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .language-option:hover {
+            background-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .language-option.active {
+            background-color: rgba(212, 175, 55, 0.3);
+            border: 1px solid var(--primary-gold);
+        }
+
+        .language-flag {
+            width: 30px;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        .premium-content {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .premium-icon {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .premium-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-gold);
+        }
+
+        .premium-desc {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .premium-btn {
+            background: linear-gradient(145deg, #d4af37, #f8e9a9);
+            color: var(--bg-dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Responsividade */
+        @media (min-width: 768px) {
+            .sites-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .sites-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Os Alfas</span>
+            </div>
+            <p class="slogan">Seu foco está aqui.</p>
+        </header>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Pesquisar site..." id="searchInput">
+        </div>
+
+        <div class="sites-grid" id="sitesGrid">
+            <!-- Sites serão adicionados via JavaScript -->
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" id="homeBtn">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" id="sacBtn">
+            <i class="fas fa-headset"></i>
+            <span>SAC</span>
+        </a>
+        <div class="nav-center" id="premiumBtn">
+            <i class="fas fa-crown"></i>
+        </div>
+        <a href="#" class="nav-item" id="configBtn">
+            <i class="fas fa-cog"></i>
+            <span>Configurações</span>
+        </a>
+    </div>
+
+    <!-- Overlay SAC -->
+    <div class="overlay" id="sacOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Entre em Contato</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-type">Telefone</div>
+                        <div class="contact-value">+55 (11) 994545930</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope">ALFAS ENTERTAINMENT</i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-type">E-mail</div>
+                        <div class="contact-value">patrocinadofeel@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-type">WhatsApp</div>
+                        <div class="contact-value">+55 (11)994545930</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-type">Horário de Atendimento</div>
+                        <div class="contact-value">Seg-Sex: 9h-18h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay Configurações -->
+    <div class="overlay" id="configOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Configurações</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3 style="margin-bottom: 15px; color: var(--primary-gold);">Idioma / Language</h3>
+                
+                <div class="language-option active" data-lang="pt">
+                    <div class="language-flag">🇧🇷</div>
+                    <div class="language-info">
+                        <div class="language-name">Português</div>
+                    </div>
+                </div>
+                
+                <div class="language-option" data-lang="en">
+                    <div class="language-flag">🇺🇸</div>
+                    <div class="language-info">
+                        <div class="language-name">English</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay Premium -->
+    <div class="overlay" id="premiumOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Os Alfas Premium</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="premium-content">
+                    <div class="premium-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="premium-title">Em Breve!</h3>
+                    <p class="premium-desc">
+                        Estamos preparando uma experiência premium exclusiva para você. 
+                        Seja notificado quando lançarmos!
+                    </p>
+                    <a href="https://exemplo.com/lista-espera-premium" class="premium-btn" target="_blank">
+                        Lista de Espera
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos sites - você pode personalizar posteriormente
+        const sites = [
+            { name: "Mina", icon: "💣", desc: "Jogo das minas", url: "https://xallleep.github.io/Mina/" },
+            { name: "Alfa Trad", icon: "📈", desc: "Previsão para o mercado", url: "https://www.youtube.com" },
+            { name: "Cobrinha", icon: "🐍", desc: "Jogo da cobrinha", url: "https://www.netflix.com" },
+            { name: "Alfa Football", icon: "⚽", desc: "Palpites de futebol" , url: "https://web.whatsapp.com" },
+            { name: "Select", icon: "🎯", desc: "Jogo de seleção", url: "https://xallleep.github.io/Select/" },
+            { name: "Loja Alfa", icon: "📦", desc: "Loja de descontos", url: "https://www.facebook.com" },
+            { name: "CalculaJuros", icon: "📊", desc: "Calculadora de juros", url: "https://xallleep.github.io/CalculaJuros2.0/" },
+            { name: "Alfa Loto", icon: "🍀", desc: "Números da sorte para lotofácil", url: "https://mail.google.com" },
+            { name: "Drive", icon: "📁", desc: "Armazenamento", url: "https://drive.google.com" },
+            { name: "Maps", icon: "🗺️", desc: "Navegação", url: "https://maps.google.com" },
+            { name: "Spotify", icon: "🎵", desc: "Música", url: "https://open.spotify.com" },
+            { name: "Amazon", icon: "📦", desc: "Compras", url: "https://www.amazon.com" }
+        ];
+
+        // Elementos da interface
+        const sacBtn = document.getElementById('sacBtn');
+        const configBtn = document.getElementById('configBtn');
+        const premiumBtn = document.getElementById('premiumBtn');
+        const sacOverlay = document.getElementById('sacOverlay');
+        const configOverlay = document.getElementById('configOverlay');
+        const premiumOverlay = document.getElementById('premiumOverlay');
+        const closeButtons = document.querySelectorAll('.close-btn');
+        const languageOptions = document.querySelectorAll('.language-option');
+
+        // Função para renderizar os sites
+        function renderSites(sitesArray) {
+            const grid = document.getElementById('sitesGrid');
+            grid.innerHTML = '';
+            
+            sitesArray.forEach(site => {
+                const siteElement = document.createElement('div');
+                siteElement.className = 'site-item';
+                siteElement.innerHTML = `
+                    <div class="site-icon">${site.icon}</div>
+                    <div class="site-name">${site.name}</div>
+                    <div class="site-desc">${site.desc}</div>
+                `;
+                
+                siteElement.addEventListener('click', () => {
+                    window.open(site.url, '_blank');
+                });
+                
+                grid.appendChild(siteElement);
+            });
+        }
+
+        // Função de pesquisa
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredSites = sites.filter(site => 
+                site.name.toLowerCase().includes(searchTerm) || 
+                site.desc.toLowerCase().includes(searchTerm)
+            );
+            renderSites(filteredSites);
+        });
+
+        // Abrir overlays
+        sacBtn.addEventListener('click', () => {
+            sacOverlay.classList.add('active');
+        });
+
+        configBtn.addEventListener('click', () => {
+            configOverlay.classList.add('active');
+        });
+
+        premiumBtn.addEventListener('click', () => {
+            premiumOverlay.classList.add('active');
+        });
+
+        // Fechar overlays
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sacOverlay.classList.remove('active');
+                configOverlay.classList.remove('active');
+                premiumOverlay.classList.remove('active');
+            });
+        });
+
+        // Fechar overlay clicando fora do modal
+        [sacOverlay, configOverlay, premiumOverlay].forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+
+        // Seleção de idioma
+        languageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                languageOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Aqui você pode implementar a mudança de idioma
+                const selectedLang = option.getAttribute('data-lang');
+                console.log(`Idioma selecionado: ${selectedLang}`);
+                // Em uma implementação real, você trocaria todo o texto da página
+            });
+        });
+
+        // Inicializar a renderização dos sites
+        renderSites(sites);
+    </script>
+</body>
+</html>
