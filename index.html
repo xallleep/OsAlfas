@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
@@ -20,17 +20,22 @@
             --secondary-gold: #f8e9a9;
             --text-light: #f5f5f5;
             --text-gray: #aaaaaa;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            --overlay-bg: rgba(0, 0, 0, 0.85);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            --overlay-bg: rgba(0, 0, 0, 0.92);
+            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f8e9a9 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            --card-border: 1px solid rgba(212, 175, 55, 0.15);
         }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-light);
             min-height: 100vh;
-            padding-bottom: 70px;
-            background-image: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), 
-                              url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%23121212" width="100" height="100"/><path fill="%23d4af37" opacity="0.1" d="M0 0h100v100H0z"/><path fill="%23d4af37" opacity="0.15" d="M20 20h60v60H20z"/></svg>');
+            padding-bottom: 80px;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
+                linear-gradient(rgba(18, 18, 18, 0.97), rgba(18, 18, 18, 0.97));
             background-attachment: fixed;
         }
 
@@ -43,43 +48,75 @@
         /* Header e Logo */
         header {
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
             margin-bottom: 20px;
-            border-bottom: 1px solid var(--primary-gold);
+            position: relative;
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-gold);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: transparent;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
             margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            letter-spacing: 1px;
         }
 
         .logo i {
-            margin-right: 10px;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+            font-size: 2.5rem;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient-gold);
+            border-radius: 4px;
         }
 
         .slogan {
             color: var(--text-gray);
             font-style: italic;
-            margin-bottom: 20px;
+            margin-top: 25px;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
         }
 
         /* Barra de Pesquisa */
-        .search-bar {
-            background-color: var(--bg-card);
-            border: 2px solid var(--primary-gold);
-            border-radius: 50px;
-            padding: 12px 20px;
-            margin: 20px auto;
+        .search-container {
             max-width: 500px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .search-bar {
+            background-color: rgba(30, 30, 30, 0.8);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            padding: 15px 25px;
             display: flex;
             align-items: center;
             box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-bar:focus-within {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: scale(1.02);
+            border-color: var(--primary-gold);
         }
 
         .search-bar input {
@@ -90,57 +127,103 @@
             font-size: 1rem;
             padding: 5px;
             outline: none;
+            letter-spacing: 0.5px;
         }
 
         .search-bar i {
             color: var(--primary-gold);
-            margin-right: 10px;
+            margin-right: 15px;
             font-size: 1.2rem;
         }
 
         /* Grid de Sites */
         .sites-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
         }
 
         .site-item {
-            background-color: var(--bg-card);
-            border-radius: 15px;
-            padding: 20px;
+            background: var(--gradient-dark);
+            border-radius: 18px;
+            padding: 25px 20px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: var(--card-border);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 150px;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .site-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
         }
 
         .site-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             border-color: var(--primary-gold);
         }
 
+        .site-item:hover::before {
+            transform: scaleX(1);
+        }
+
         .site-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-gold);
+            width: 110px;
+            height: 110px;
+            margin-bottom: 20px;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 15px;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .site-item:hover .site-icon {
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .site-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
 
         .site-name {
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
         }
 
         .site-desc {
             color: var(--text-gray);
-            font-size: 0.85rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* Barra de Navegação Inferior */
@@ -149,13 +232,14 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--primary-gold);
+            background-color: rgba(30, 30, 30, 0.95);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             justify-content: space-around;
             padding: 15px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
             z-index: 100;
+            backdrop-filter: blur(15px);
         }
 
         .nav-item {
@@ -166,31 +250,41 @@
             text-decoration: none;
             font-size: 0.9rem;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 15px;
         }
 
         .nav-item.active, .nav-item:hover {
             color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .nav-item i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 5px;
         }
 
         .nav-center {
             position: relative;
-            bottom: 15px;
-            background: linear-gradient(145deg, #d4af37, #f8e9a9);
-            width: 50px;
-            height: 50px;
+            bottom: 20px;
+            background: var(--gradient-gold);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             color: #121212;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-center:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
         }
 
         /* Overlays/Modais */
@@ -208,6 +302,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
+            backdrop-filter: blur(8px);
         }
 
         .overlay.active {
@@ -216,70 +311,84 @@
         }
 
         .modal {
-            background-color: var(--bg-card);
-            border: 2px solid var(--primary-gold);
-            border-radius: 15px;
-            padding: 25px;
+            background: var(--gradient-dark);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px;
             width: 90%;
-            max-width: 400px;
+            max-width: 450px;
             max-height: 80vh;
             overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            transform: translateY(20px);
-            transition: transform 0.3s;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.4s ease;
         }
 
         .overlay.active .modal {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--primary-gold);
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
 
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: var(--primary-gold);
+            font-weight: 700;
         }
 
         .close-btn {
             background: none;
             border: none;
             color: var(--text-gray);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: color 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .close-btn:hover {
             color: var(--primary-gold);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 18px;
+            padding: 15px;
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateX(8px);
         }
 
         .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-gold);
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 18px;
             color: var(--bg-dark);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .contact-info {
@@ -287,38 +396,45 @@
         }
 
         .contact-type {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-gray);
+            margin-bottom: 4px;
         }
 
         .contact-value {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--text-light);
         }
 
         .language-option {
             display: flex;
             align-items: center;
-            padding: 12px;
-            margin-bottom: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
             background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .language-option:hover {
-            background-color: rgba(212, 175, 55, 0.2);
+            background-color: rgba(212, 175, 55, 0.15);
+            transform: translateX(8px);
         }
 
         .language-option.active {
-            background-color: rgba(212, 175, 55, 0.3);
+            background-color: rgba(212, 175, 55, 0.2);
             border: 1px solid var(--primary-gold);
         }
 
         .language-flag {
-            width: 30px;
-            margin-right: 15px;
-            font-size: 1.5rem;
+            width: 35px;
+            margin-right: 18px;
+            font-size: 1.8rem;
+        }
+
+        .language-name {
+            font-weight: 600;
         }
 
         .premium-content {
@@ -327,50 +443,141 @@
         }
 
         .premium-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary-gold);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
         }
 
         .premium-title {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--primary-gold);
+            font-weight: 700;
         }
 
         .premium-desc {
-            margin-bottom: 25px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            color: var(--text-gray);
         }
 
         .premium-btn {
-            background: linear-gradient(145deg, #d4af37, #f8e9a9);
+            background: var(--gradient-gold);
             color: var(--bg-dark);
             border: none;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             display: inline-block;
             text-decoration: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
         .premium-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
         }
 
-        /* Responsividade */
-        @media (min-width: 768px) {
-            .sites-grid {
-                grid-template-columns: repeat(3, 1fr);
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Animação de entrada para os cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (min-width: 1024px) {
+        .site-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .site-item:nth-child(1) { animation-delay: 0.1s; }
+        .site-item:nth-child(2) { animation-delay: 0.2s; }
+        .site-item:nth-child(3) { animation-delay: 0.3s; }
+        .site-item:nth-child(4) { animation-delay: 0.4s; }
+        .site-item:nth-child(5) { animation-delay: 0.5s; }
+        .site-item:nth-child(6) { animation-delay: 0.6s; }
+        .site-item:nth-child(7) { animation-delay: 0.7s; }
+        .site-item:nth-child(8) { animation-delay: 0.8s; }
+        .site-item:nth-child(9) { animation-delay: 0.9s; }
+        .site-item:nth-child(10) { animation-delay: 1.0s; }
+        .site-item:nth-child(11) { animation-delay: 1.1s; }
+        .site-item:nth-child(12) { animation-delay: 1.2s; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
             .sites-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .logo {
+                font-size: 2.2rem;
+            }
+            
+            .site-item {
+                min-height: 230px;
+                padding: 20px 15px;
+            }
+            
+            .site-icon {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sites-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .search-bar {
+                padding: 12px 20px;
+            }
+            
+            .nav-item span {
+                display: none;
+            }
+            
+            .nav-item i {
+                font-size: 1.6rem;
+                margin-bottom: 0;
+            }
+            
+            .nav-center {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+                bottom: 15px;
+            }
+            
+            .site-icon {
+                width: 90px;
+                height: 90px;
             }
         }
     </style>
@@ -382,18 +589,24 @@
                 <i class="fas fa-crown"></i>
                 <span>Os Alfas</span>
             </div>
-            <p class="slogan">Seu foco está aqui.</p>
+            <p class="slogan">Seu portal de acessos premium</p>
         </header>
 
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Pesquisar site..." id="searchInput">
+        <div class="search-container">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Pesquisar site..." id="searchInput">
+            </div>
         </div>
 
         <div class="sites-grid" id="sitesGrid">
             <!-- Sites serão adicionados via JavaScript -->
         </div>
     </div>
+
+    <footer>
+        <p>© 2023 Os Alfas - Todos os direitos reservados</p>
+    </footer>
 
     <div class="bottom-nav">
         <a href="#" class="nav-item active" id="homeBtn">
@@ -432,7 +645,7 @@
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">
-                        <i class="fas fa-envelope">ALFAS ENTERTAINMENT</i>
+                        <i class="fas fa-envelope"></i>
                     </div>
                     <div class="contact-info">
                         <div class="contact-type">E-mail</div>
@@ -445,7 +658,7 @@
                     </div>
                     <div class="contact-info">
                         <div class="contact-type">WhatsApp</div>
-                        <div class="contact-value">+55 (11)994545930</div>
+                        <div class="contact-value">+55 (11) 994545930</div>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -469,7 +682,7 @@
                 <button class="close-btn">&times;</button>
             </div>
             <div class="modal-body">
-                <h3 style="margin-bottom: 15px; color: var(--primary-gold);">Idioma / Language</h3>
+                <h3 style="margin-bottom: 20px; color: var(--primary-gold);">Idioma / Language</h3>
                 
                 <div class="language-option active" data-lang="pt">
                     <div class="language-flag">🇧🇷</div>
@@ -514,20 +727,80 @@
     </div>
 
     <script>
-        // Dados dos sites - você pode personalizar posteriormente
+        // Dados dos sites com URLs das imagens
         const sites = [
-            { name: "Mina", icon: "💣", desc: "Jogo das minas", url: "https://xallleep.github.io/Mina/" },
-            { name: "Canal Youtube", icon: "👁️‍🗨️", desc: "Misterios Pelo Mindo", url: "https://youtube.com/@misteriospelomundo8?si=NO2YrvrxslQmOUun" },
-            { name: "Cobrinha", icon: "🐍", desc: "Jogo da cobrinha", url: "https://xallleep.github.io/AlfaCobrinha/" },
-            { name: "Doe", icon: "❤️‍🩹", desc: "Faça sua parte, e doe." , url: "https://xallleep.github.io/Doe/" },
-            { name: "Select", icon: "🎯", desc: "Jogo de seleção", url: "https://xallleep.github.io/Select/" },
-            { name: "Loja Alfa", icon: "📦", desc: "Sua loja de descontos Alfa", url: "https://xallleep.github.io/LojaAlfa/" },
-            { name: "CalculaJuros", icon: "📊", desc: "Calculadora de juros", url: "https://xallleep.github.io/CalculaJuros2.0/" },
-            { name: "Alfa Loto", icon: "🍀", desc: "Números da sorte para lotofácil", url: "https://xallleep.github.io/Loto-Palpites/" },
-            { name: "Drive", icon: "📁", desc: "Armazenamento", url: "https://drive.google.com" },
-            { name: "Maps", icon: "🗺️", desc: "Navegação", url: "https://maps.google.com" },
-            { name: "Spotify", icon: "🎵", desc: "Música", url: "https://open.spotify.com" },
-            { name: "Amazon", icon: "📦", desc: "Compras", url: "https://www.amazon.com" }
+            { 
+                name: "Mina", 
+                icon: "https://imgs.search.brave.com/iRWITU4y-_JUmUGaJk_rP-Gg1-ZSYbdEN0-uE4kmBI4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTc3/ODk4MTQ0Ni9wdC92/ZXRvcmlhbC9leHBs/b2RpbmctYm9tYi1p/Y29uLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz0weVhlWGQz/X1lzMjNqeXJkNE9F/el9LZVFHTEQ0TF9v/Q3FraXh4RUh3THRN/PQ", 
+                desc: "Jogo das minas", 
+                url: "https://xallleep.github.io/Mina/" 
+            },
+            { 
+                name: "Canal Youtube", 
+                icon: "https://imgs.search.brave.com/8I_7tFvAuyI-ZPhAxLanVmcXj9Zs3h4aAwH08_aFTjo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1wc2Qv/M2QtZnJvbnQtZWxs/aXBzZS1yZWQteW91/dHViZS1yZWQtaWNv/bl8yMjA2NjQtMTAy/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA", 
+                desc: "Misterios Pelo Mindo", 
+                url: "https://youtube.com/@misteriospelomundo8?si=NO2YrvrxslQmOUun" 
+            },
+            { 
+                name: "Cobrinha", 
+                icon: "https://imgs.search.brave.com/63zNi9s5AYBmp4tSpFy4ekggUdHAuvlPGakZacjEj24/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tL05R/bDEwdDA1RVpxaVNh/TlVTWXAwYm9meVBZ/RHYzVEJycDYtWGw2/SnBKLUhWRWR3Z2lw/SzRVeTd4dGc4U2ZT/cVZBVkpxNFBEOEJD/bG9RakZ0S2dIRGVq/TUFNdz1zMjc1LXcy/NzUtaDE3NQ", 
+                desc: "Jogo da cobrinha", 
+                url: "https://xallleep.github.io/AlfaCobrinha/" 
+            },
+            { 
+                name: "Doe", 
+                icon: "https://imgs.search.brave.com/TCuZxMar_hacHsBZhSs_EJ0s11um2-g1dvZiTLniDBE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdDQu/ZGVwb3NpdHBob3Rv/cy5jb20vMTYxMjI0/NjAvMzE0NzgvaS80/NTAvZGVwb3NpdHBo/b3Rvc18zMTQ3ODQ4/MzAtc3RvY2stcGhv/dG8td29tYW4taG9s/ZGluZy1ibGFuay1w/YXBlci1oZWFydC5q/cGc", 
+                desc: "Faça sua parte, e doe.", 
+                url: "https://xallleep.github.io/Doe/" 
+            },
+            { 
+                name: "Select", 
+                icon: "https://imgs.search.brave.com/C0Fpv88EvCixBX2Md3_0czMbNgC_KYGAeUxMU8PDBsg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9hbHZv/LWRvLWFsdm8tZS0l/QzMlQURjb25lLWRh/LXNldGEtNDY2NzEx/MjMuanBn", 
+                desc: "Jogo de seleção", 
+                url: "https://xallleep.github.io/Select/" 
+            },
+            { 
+                name: "Loja Alfa", 
+                icon: "https://imgs.search.brave.com/oEJzz9ZpRkuykGfhqmNAfQGlHLTIjAOSP72aQD_C87w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmV0b3Jlcy1wcmVt/aXVtL2xvamEtb25s/aW5lLWxvZ28tdmVj/dG9yXzIwNDQ4LTI3/OC5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQwJnE9ODA", 
+                desc: "Sua loja de descontos Alfa", 
+                url: "https://xallleep.github.io/LojaAlfa/" 
+            },
+            { 
+                name: "CalculaJuros", 
+                icon: "https://imgs.search.brave.com/ryRTGuFbnqKCsNyNJXcza6upUvNfnhKwT5vnu_ToPIk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wbmctY2FsY3Vs/YWRvcmEtZm9uZG8t/YmxhbmNvLW1hdGVt/YXRpY2FzLWVsZWN0/cm9uaWNhXzUzODc2/LTc0Njc4NS5qcGc_/c2VtdD1haXNfaW5j/b21pbmcmdz03NDAm/cT04MA", 
+                desc: "Calculadora de juros", 
+                url: "https://xallleep.github.io/CalculaJuros2.0/" 
+            },
+            { 
+                name: "Alfa Loto", 
+                icon: "https://imgs.search.brave.com/0UH0n-GkKjD7sWN-eq-PlKpc1SU4SBjiCFtUIdsDIQg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2VuYXJpb210LmNv/bS5ici9sb3Rlcmlh/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDI0/LzAyL2xvdG9mYWNp/bC0yODB4MjEwLnBu/Zw", 
+                desc: "Números da sorte para lotofácil", 
+                url: "https://xallleep.github.io/Loto-Palpites/" 
+            },
+            { 
+                name: "Drive", 
+                icon: "https://cdn-icons-png.flaticon.com/512/2875/2875404.png", 
+                desc: "Armazenamento", 
+                url: "https://drive.google.com" 
+            },
+            { 
+                name: "Maps", 
+                icon: "https://cdn-icons-png.flaticon.com/512/684/684908.png", 
+                desc: "Navegação", 
+                url: "https://maps.google.com" 
+            },
+            { 
+                name: "Spotify", 
+                icon: "https://cdn-icons-png.flaticon.com/512/2111/2111624.png", 
+                desc: "Música", 
+                url: "https://open.spotify.com" 
+            },
+            { 
+                name: "Amazon", 
+                icon: "https://cdn-icons-png.flaticon.com/512/731/731979.png", 
+                desc: "Compras", 
+                url: "https://www.amazon.com" 
+            }
         ];
 
         // Elementos da interface
@@ -549,7 +822,9 @@
                 const siteElement = document.createElement('div');
                 siteElement.className = 'site-item';
                 siteElement.innerHTML = `
-                    <div class="site-icon">${site.icon}</div>
+                    <div class="site-icon">
+                        <img src="${site.icon}" alt="${site.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/110?text=Ícone+Indisponível'">
+                    </div>
                     <div class="site-name">${site.name}</div>
                     <div class="site-desc">${site.desc}</div>
                 `;
