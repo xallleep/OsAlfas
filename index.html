@@ -3,40 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Os Alfas - Portal de Acessos</title>
+    <title>Os Alfas - Portal Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0a0a12;
+            --secondary: #151521;
+            --accent: #d4af37;
+            --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f8e9a9 100%);
+            --text: #f5f5f7;
+            --text-secondary: #aaaaaa;
+            --card-bg: #1a1a27;
+            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            --transition: all 0.3s ease;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --bg-dark: #121212;
-            --bg-card: #1e1e1e;
-            --primary-gold: #d4af37;
-            --secondary-gold: #f8e9a9;
-            --text-light: #f5f5f5;
-            --text-gray: #aaaaaa;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-            --overlay-bg: rgba(0, 0, 0, 0.92);
-            --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f8e9a9 100%);
-            --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            --card-border: 1px solid rgba(212, 175, 55, 0.15);
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background: var(--primary);
+            color: var(--text);
             min-height: 100vh;
-            padding-bottom: 80px;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
-                linear-gradient(rgba(18, 18, 18, 0.97), rgba(18, 18, 18, 0.97));
-            background-attachment: fixed;
+                radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 30%),
+                radial-gradient(circle at 85% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 30%);
+            padding-bottom: 20px;
         }
 
         .container {
@@ -45,539 +42,296 @@
             padding: 20px;
         }
 
-        /* Header e Logo */
+        /* Header */
         header {
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 20px;
-            position: relative;
+            padding: 20px 0;
+            margin-bottom: 10px;
         }
 
         .logo {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: transparent;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            background-clip: text;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            letter-spacing: 1px;
+            font-size: 24px;
+            color: #000;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .logo i {
-            margin-right: 15px;
-            filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
-            font-size: 2.5rem;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 4px;
-            background: var(--gradient-gold);
-            border-radius: 4px;
+        .logo-text {
+            font-weight: 800;
+            font-size: 28px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
 
         .slogan {
-            color: var(--text-gray);
-            font-style: italic;
-            margin-top: 25px;
+            color: var(--text-secondary);
             font-size: 1.1rem;
-            letter-spacing: 0.5px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Barra de Pesquisa */
+        /* Search */
         .search-container {
-            max-width: 500px;
-            margin: 30px auto;
+            max-width: 600px;
+            margin: 0 auto 30px;
             position: relative;
         }
 
-        .search-bar {
-            background-color: rgba(30, 30, 30, 0.8);
-            border: 2px solid rgba(212, 175, 55, 0.3);
+        .search-box {
+            background: var(--secondary);
             border-radius: 50px;
             padding: 15px 25px;
             display: flex;
             align-items: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
-        .search-bar:focus-within {
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            transform: scale(1.02);
-            border-color: var(--primary-gold);
+        .search-box:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
-        .search-bar input {
+        .search-box i {
+            color: var(--accent);
+            font-size: 20px;
+            margin-right: 15px;
+        }
+
+        .search-box input {
             background: transparent;
             border: none;
-            color: var(--text-light);
+            color: var(--text);
             width: 100%;
-            font-size: 1rem;
-            padding: 5px;
+            font-size: 16px;
             outline: none;
-            letter-spacing: 0.5px;
         }
 
-        .search-bar i {
-            color: var(--primary-gold);
-            margin-right: 15px;
-            font-size: 1.2rem;
+        .search-box input::placeholder {
+            color: var(--text-secondary);
         }
 
-        /* Grid de Sites */
-        .sites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 20px 0;
-        }
-
-        .site-item {
-            background: var(--gradient-dark);
-            border-radius: 18px;
-            padding: 25px 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            border: var(--card-border);
+        /* Categories */
+        .categories {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 250px;
-            position: relative;
-            overflow: hidden;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background: var(--secondary);
+            border: none;
+            border-radius: 30px;
+            color: var(--text);
             cursor: pointer;
-        }
-
-        .site-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient-gold);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .site-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: var(--primary-gold);
-        }
-
-        .site-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .site-icon {
-            width: 110px;
-            height: 110px;
-            margin-bottom: 20px;
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(212, 175, 55, 0.1);
-            padding: 15px;
-            transition: all 0.4s ease;
-            overflow: hidden;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 14px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .site-item:hover .site-icon {
-            background: rgba(212, 175, 55, 0.15);
-            transform: scale(1.15) rotate(5deg);
+        .category-btn.active, .category-btn:hover {
+            background: var(--accent-gradient);
+            color: #000;
+        }
+
+        /* Sites Grid - DUAS COLUNAS */
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .site-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            height: 120px;
+            display: flex;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .site-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .site-icon {
+            width: 80px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
         }
 
         .site-icon img {
             width: 100%;
-            height: 100%;
+            height: auto;
             object-fit: contain;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .site-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .site-name {
             font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.25rem;
-            letter-spacing: 0.5px;
+            font-size: 16px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .site-badge {
+            background: var(--accent-gradient);
+            color: #000;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 600;
         }
 
         .site-desc {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.4;
         }
 
-        /* Barra de Navegação Inferior */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(30, 30, 30, 0.95);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            justify-content: space-around;
-            padding: 15px;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            backdrop-filter: blur(15px);
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            padding: 8px 15px;
-            border-radius: 15px;
-        }
-
-        .nav-item.active, .nav-item:hover {
-            color: var(--primary-gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .nav-item i {
-            font-size: 1.4rem;
-            margin-bottom: 5px;
-        }
-
-        .nav-center {
-            position: relative;
-            bottom: 20px;
-            background: var(--gradient-gold);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            color: #121212;
-            font-size: 1.6rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .nav-center:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Overlays/Modais */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--overlay-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
-            backdrop-filter: blur(8px);
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: var(--gradient-dark);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 20px;
-            padding: 30px;
-            width: 90%;
-            max-width: 450px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transform: translateY(30px) scale(0.95);
-            transition: transform 0.4s ease;
-        }
-
-        .overlay.active .modal {
-            transform: translateY(0) scale(1);
-        }
-
-        .modal-header {
+        .site-action {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: 10px;
         }
 
-        .modal-title {
-            font-size: 1.7rem;
-            color: var(--primary-gold);
-            font-weight: 700;
-        }
-
-        .close-btn {
-            background: none;
+        .site-btn {
+            padding: 8px 15px;
+            background: var(--accent-gradient);
+            color: #000;
             border: none;
-            color: var(--text-gray);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: color 0.3s;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-btn:hover {
-            color: var(--primary-gold);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-            padding: 15px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            background-color: rgba(212, 175, 55, 0.1);
-            transform: translateX(8px);
-        }
-
-        .contact-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--gradient-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 18px;
-            color: var(--bg-dark);
-            font-size: 1.3rem;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-type {
-            font-size: 0.95rem;
-            color: var(--text-gray);
-            margin-bottom: 4px;
-        }
-
-        .contact-value {
+            border-radius: 20px;
             font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .language-option {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 12px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .language-option:hover {
-            background-color: rgba(212, 175, 55, 0.15);
-            transform: translateX(8px);
-        }
-
-        .language-option.active {
-            background-color: rgba(212, 175, 55, 0.2);
-            border: 1px solid var(--primary-gold);
-        }
-
-        .language-flag {
-            width: 35px;
-            margin-right: 18px;
-            font-size: 1.8rem;
-        }
-
-        .language-name {
-            font-weight: 600;
-        }
-
-        .premium-content {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .premium-icon {
-            font-size: 3.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
-        }
-
-        .premium-title {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary-gold);
-            font-weight: 700;
-        }
-
-        .premium-desc {
-            margin-bottom: 30px;
-            line-height: 1.7;
-            color: var(--text-gray);
-        }
-
-        .premium-btn {
-            background: var(--gradient-gold);
-            color: var(--bg-dark);
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
+            transition: var(--transition);
             text-decoration: none;
-            letter-spacing: 0.5px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            font-size: 12px;
         }
 
-        .premium-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+        .site-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(212, 175, 55, 0.3);
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 30px;
-            margin-top: 50px;
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--text-secondary);
+            font-size: 14px;
         }
 
-        /* Animação de entrada para os cards */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .site-item {
-            animation: fadeInUp 0.6s ease forwards;
+        .site-card {
+            animation: fadeIn 0.5s ease forwards;
             opacity: 0;
         }
 
-        .site-item:nth-child(1) { animation-delay: 0.1s; }
-        .site-item:nth-child(2) { animation-delay: 0.2s; }
-        .site-item:nth-child(3) { animation-delay: 0.3s; }
-        .site-item:nth-child(4) { animation-delay: 0.4s; }
-        .site-item:nth-child(5) { animation-delay: 0.5s; }
-        .site-item:nth-child(6) { animation-delay: 0.6s; }
-        .site-item:nth-child(7) { animation-delay: 0.7s; }
-        .site-item:nth-child(8) { animation-delay: 0.8s; }
-        .site-item:nth-child(9) { animation-delay: 0.9s; }
-        .site-item:nth-child(10) { animation-delay: 1.0s; }
-        .site-item:nth-child(11) { animation-delay: 1.1s; }
-        .site-item:nth-child(12) { animation-delay: 1.2s; }
+        .site-card:nth-child(1) { animation-delay: 0.1s; }
+        .site-card:nth-child(2) { animation-delay: 0.2s; }
+        .site-card:nth-child(3) { animation-delay: 0.3s; }
+        .site-card:nth-child(4) { animation-delay: 0.4s; }
+        .site-card:nth-child(5) { animation-delay: 0.5s; }
+        .site-card:nth-child(6) { animation-delay: 0.6s; }
+        .site-card:nth-child(7) { animation-delay: 0.7s; }
+        .site-card:nth-child(8) { animation-delay: 0.8s; }
 
-        /* Responsividade */
+        /* Responsive */
         @media (max-width: 768px) {
             .sites-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns: 1fr;
             }
             
-            .logo {
-                font-size: 2.2rem;
+            .logo-text {
+                font-size: 22px;
             }
             
-            .site-item {
-                min-height: 230px;
-                padding: 20px 15px;
+            .site-card {
+                height: 100px;
             }
             
             .site-icon {
-                width: 100px;
-                height: 100px;
-                margin-bottom: 15px;
+                width: 70px;
+                padding: 12px;
+            }
+            
+            .site-content {
+                padding: 12px;
+            }
+            
+            .site-name {
+                font-size: 15px;
+            }
+            
+            .site-desc {
+                font-size: 12px;
             }
         }
 
         @media (max-width: 480px) {
-            .sites-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
+            .categories {
+                gap: 8px;
             }
             
-            .logo {
-                font-size: 2rem;
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 12px;
             }
             
-            .search-bar {
-                padding: 12px 20px;
+            .logo-text {
+                font-size: 20px;
             }
             
-            .nav-item span {
-                display: none;
-            }
-            
-            .nav-item i {
-                font-size: 1.6rem;
-                margin-bottom: 0;
-            }
-            
-            .nav-center {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-                bottom: 15px;
-            }
-            
-            .site-icon {
-                width: 90px;
-                height: 90px;
+            .slogan {
+                font-size: 14px;
             }
         }
     </style>
@@ -586,313 +340,216 @@
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-crown"></i>
-                <span>Os Alfas</span>
+                <div class="logo-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="logo-text">OS ALFAS</div>
             </div>
-            <p class="slogan">Seu portal de acessos premium</p>
+            <p class="slogan">Seus jogos, ferramentas e utilidades em um só lugar</p>
         </header>
-
+        
         <div class="search-container">
-            <div class="search-bar">
+            <div class="search-box">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Pesquisar site..." id="searchInput">
+                <input type="text" placeholder="Pesquisar jogos, ferramentas..." id="searchInput">
             </div>
         </div>
-
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="jogos">Jogos</button>
+            <button class="category-btn" data-category="ferramentas">Ferramentas</button>
+            <button class="category-btn" data-category="utilidades">Utilidades</button>
+        </div>
+        
         <div class="sites-grid" id="sitesGrid">
-            <!-- Sites serão adicionados via JavaScript -->
+            <!-- Sites serão carregados via JavaScript -->
         </div>
     </div>
-
+    
     <footer>
         <p>© 2023 Os Alfas - Todos os direitos reservados</p>
     </footer>
 
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active" id="homeBtn">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#" class="nav-item" id="sacBtn">
-            <i class="fas fa-headset"></i>
-            <span>SAC</span>
-        </a>
-        <div class="nav-center" id="premiumBtn">
-            <i class="fas fa-crown"></i>
-        </div>
-        <a href="#" class="nav-item" id="configBtn">
-            <i class="fas fa-cog"></i>
-            <span>Configurações</span>
-        </a>
-    </div>
-
-    <!-- Overlay SAC -->
-    <div class="overlay" id="sacOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Entre em Contato</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-type">Telefone</div>
-                        <div class="contact-value">+55 (11) 994545930</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-type">E-mail</div>
-                        <div class="contact-value">patrocinadofeel@gmail.com</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-type">WhatsApp</div>
-                        <div class="contact-value">+55 (11) 994545930</div>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-type">Horário de Atendimento</div>
-                        <div class="contact-value">Seg-Sex: 9h-18h</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Overlay Configurações -->
-    <div class="overlay" id="configOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Configurações</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h3 style="margin-bottom: 20px; color: var(--primary-gold);">Idioma / Language</h3>
-                
-                <div class="language-option active" data-lang="pt">
-                    <div class="language-flag">🇧🇷</div>
-                    <div class="language-info">
-                        <div class="language-name">Português</div>
-                    </div>
-                </div>
-                
-                <div class="language-option" data-lang="en">
-                    <div class="language-flag">🇺🇸</div>
-                    <div class="language-info">
-                        <div class="language-name">English</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Overlay Premium -->
-    <div class="overlay" id="premiumOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title">Os Alfas Premium</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="premium-content">
-                    <div class="premium-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3 class="premium-title">Em Breve!</h3>
-                    <p class="premium-desc">
-                        Estamos preparando uma experiência premium exclusiva para você. 
-                        Seja notificado quando lançarmos!
-                    </p>
-                    <a href="https://exemplo.com/lista-espera-premium" class="premium-btn" target="_blank">
-                        Lista de Espera
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Dados dos sites com URLs das imagens
+        // ==================== CONFIGURAÇÃO DOS SITES ====================
+        // ADICIONE SEUS NOVOS SITES AQUI - É MUITO FÁCIL!
+        // Basta copiar e colar um dos blocos abaixo e editar as informações
+        
         const sites = [
-            { 
-                name: "Mina", 
-                icon: "https://imgs.search.brave.com/iRWITU4y-_JUmUGaJk_rP-Gg1-ZSYbdEN0-uE4kmBI4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTc3/ODk4MTQ0Ni9wdC92/ZXRvcmlhbC9leHBs/b2RpbmctYm9tYi1p/Y29uLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz0weVhlWGQz/X1lzMjNqeXJkNE9F/el9LZVFHTEQ0TF9v/Q3FraXh4RUh3THRN/PQ", 
-                desc: "Jogo das minas", 
-                url: "https://xallleep.github.io/Mina/" 
+            // JOGOS
+            {
+                name: "Mina",
+                icon: "https://cdn.pixabay.com/photo/2020/01/11/14/32/bomb-4757693_1280.png",
+                desc: "Jogo das minas emocionante",
+                url: "https://xallleep.github.io/Mina/",
+                category: "jogos"
             },
-            { 
-                name: "Canal Youtube", 
-                icon: "https://imgs.search.brave.com/8I_7tFvAuyI-ZPhAxLanVmcXj9Zs3h4aAwH08_aFTjo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1wc2Qv/M2QtZnJvbnQtZWxs/aXBzZS1yZWQteW91/dHViZS1yZWQtaWNv/bl8yMjA2NjQtMTAy/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA", 
-                desc: "Misterios Pelo Mindo", 
-                url: "https://youtube.com/@misteriospelomundo8?si=NO2YrvrxslQmOUun" 
+            {
+                name: "Cobrinha",
+                icon: "https://cdn.pixabay.com/photo/2013/07/13/12/05/rattlesnake-159135_1280.png",
+                desc: "Jogo da cobrinha clássico",
+                url: "https://xallleep.github.io/AlfaCobrinha/",
+                category: "jogos"
             },
-            { 
-                name: "Cobrinha", 
-                icon: "https://imgs.search.brave.com/63zNi9s5AYBmp4tSpFy4ekggUdHAuvlPGakZacjEj24/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9saDMu/Z29vZ2xldXNlcmNv/bnRlbnQuY29tL05R/bDEwdDA1RVpxaVNh/TlVTWXAwYm9meVBZ/RHYzVEJycDYtWGw2/SnBKLUhWRWR3Z2lw/SzRVeTd4dGc4U2ZT/cVZBVkpxNFBEOEJD/bG9RakZ0S2dIRGVq/TUFNdz1zMjc1LXcy/NzUtaDE3NQ", 
-                desc: "Jogo da cobrinha", 
-                url: "https://xallleep.github.io/AlfaCobrinha/" 
+            {
+                name: "Tetris",
+                icon: "https://cdn.pixabay.com/photo/2017/01/31/19/35/building-blocks-2026726_1280.png",
+                desc: "Alfa Tetris classico",
+                url: "https://xallleep.github.io/AlfaTeatris/",
+                category: "jogos"
             },
-            { 
-                name: "Doe", 
-                icon: "https://imgs.search.brave.com/TCuZxMar_hacHsBZhSs_EJ0s11um2-g1dvZiTLniDBE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdDQu/ZGVwb3NpdHBob3Rv/cy5jb20vMTYxMjI0/NjAvMzE0NzgvaS80/NTAvZGVwb3NpdHBo/b3Rvc18zMTQ3ODQ4/MzAtc3RvY2stcGhv/dG8td29tYW4taG9s/ZGluZy1ibGFuay1w/YXBlci1oZWFydC5q/cGc", 
-                desc: "Faça sua parte, e doe.", 
-                url: "https://xallleep.github.io/Doe/" 
+            {
+                name: "Select",
+                icon: "https://cdn.pixabay.com/photo/2013/07/12/14/11/target-147922_1280.png",
+                desc: "Jogo de seleção desafiadora",
+                url: "https://xallleep.github.io/Select/",
+                category: "jogos"
             },
-            { 
-                name: "Select", 
-                icon: "https://imgs.search.brave.com/C0Fpv88EvCixBX2Md3_0czMbNgC_KYGAeUxMU8PDBsg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi9hbHZv/LWRvLWFsdm8tZS0l/QzMlQURjb25lLWRh/LXNldGEtNDY2NzEx/MjMuanBn", 
-                desc: "Jogo de seleção", 
-                url: "https://xallleep.github.io/Select/" 
+            
+            // FERRAMENTAS
+            {
+                name: "CalculaJuros",
+                icon: "https://cdn.pixabay.com/photo/2021/09/20/08/52/calculator-6640217_1280.png",
+                desc: "Calculadora de juros precisa",
+                url: "https://xallleep.github.io/CalculaJuros2.0/",
+                category: "ferramentas"
             },
-            { 
-                name: "Loja Alfa", 
-                icon: "https://imgs.search.brave.com/oEJzz9ZpRkuykGfhqmNAfQGlHLTIjAOSP72aQD_C87w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/dmV0b3Jlcy1wcmVt/aXVtL2xvamEtb25s/aW5lLWxvZ28tdmVj/dG9yXzIwNDQ4LTI3/OC5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQwJnE9ODA", 
-                desc: "Sua loja de descontos Alfa", 
-                url: "https://xallleep.github.io/LojaAlfa/" 
+            {
+                name: "Alfa Loto",
+                icon: "https://cdn.pixabay.com/photo/2019/03/20/05/34/graphic-4067697_1280.png",
+                desc: "Números da sorte para lotofácil",
+                url: "https://xallleep.github.io/Loto-Palpites/",
+                category: "ferramentas"
             },
-            { 
-                name: "CalculaJuros", 
-                icon: "https://imgs.search.brave.com/ryRTGuFbnqKCsNyNJXcza6upUvNfnhKwT5vnu_ToPIk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9wbmctY2FsY3Vs/YWRvcmEtZm9uZG8t/YmxhbmNvLW1hdGVt/YXRpY2FzLWVsZWN0/cm9uaWNhXzUzODc2/LTc0Njc4NS5qcGc_/c2VtdD1haXNfaW5j/b21pbmcmdz03NDAm/cT04MA", 
-                desc: "Calculadora de juros", 
-                url: "https://xallleep.github.io/CalculaJuros2.0/" 
+            
+            // UTILIDADES
+            {
+                name: "Canal YouTube",
+                icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+                desc: "Mistérios Pelo Mundo - Se inscreva!",
+                url: "https://youtube.com/@misteriospelomundo8?si=NO2YrvrxslQmOUun",
+                category: "utilidades"
             },
-            { 
-                name: "Alfa Loto", 
-                icon: "https://imgs.search.brave.com/0UH0n-GkKjD7sWN-eq-PlKpc1SU4SBjiCFtUIdsDIQg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2VuYXJpb210LmNv/bS5ici9sb3Rlcmlh/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDI0/LzAyL2xvdG9mYWNp/bC0yODB4MjEwLnBu/Zw", 
-                desc: "Números da sorte para lotofácil", 
-                url: "https://xallleep.github.io/Loto-Palpites/" 
+            {
+                name: "Doe",
+                icon: "https://cdn.pixabay.com/photo/2015/06/16/14/13/icon-811223_1280.jpg",
+                desc: "Faça sua parte, doe e ajude",
+                url: "https://xallleep.github.io/Doe/",
+                category: "utilidades"
             },
-            { 
-                name: "Drive", 
-                icon: "https://cdn-icons-png.flaticon.com/512/2875/2875404.png", 
-                desc: "Armazenamento", 
-                url: "https://drive.google.com" 
-            },
-            { 
-                name: "Maps", 
-                icon: "https://cdn-icons-png.flaticon.com/512/684/684908.png", 
-                desc: "Navegação", 
-                url: "https://maps.google.com" 
-            },
-            { 
-                name: "Spotify", 
-                icon: "https://cdn-icons-png.flaticon.com/512/2111/2111624.png", 
-                desc: "Música", 
-                url: "https://open.spotify.com" 
-            },
-            { 
-                name: "Amazon", 
-                icon: "https://cdn-icons-png.flaticon.com/512/731/731979.png", 
-                desc: "Compras", 
-                url: "https://www.amazon.com" 
+            {
+                name: "Loja Alfa",
+                icon: "https://cdn-icons-png.flaticon.com/512/2331/2331966.png",
+                desc: "Sua loja de descontos Alfa",
+                url: "https://xallleep.github.io/LojaAlfa/",
+                category: "utilidades"
             }
+            
+            // PARA ADICIONAR NOVOS SITES:
+            // 1. Copie o bloco completo abaixo (incluindo as chaves {})
+            // 2. Cole antes do ]; final
+            // 3. Altere os dados conforme necessário
+            /*
+            ,
+            {
+                name: "NOME DO SITE",
+                icon: "URL_DO_ICONE",
+                desc: "DESCRIÇÃO CURTA",
+                url: "URL_DO_SITE",
+                category: "jogos/ferramentas/utilidades"
+            }
+            */
         ];
+        
+        // ==================== CÓDIGO PRINCIPAL ====================
+        // (Não é necessário alterar nada daqui para baixo)
+        
+        // Variáveis globais
+        let currentCategory = 'all';
 
-        // Elementos da interface
-        const sacBtn = document.getElementById('sacBtn');
-        const configBtn = document.getElementById('configBtn');
-        const premiumBtn = document.getElementById('premiumBtn');
-        const sacOverlay = document.getElementById('sacOverlay');
-        const configOverlay = document.getElementById('configOverlay');
-        const premiumOverlay = document.getElementById('premiumOverlay');
-        const closeButtons = document.querySelectorAll('.close-btn');
-        const languageOptions = document.querySelectorAll('.language-option');
-
-        // Função para renderizar os sites
-        function renderSites(sitesArray) {
+        // Renderizar sites
+        function renderSites(sitesToRender) {
             const grid = document.getElementById('sitesGrid');
             grid.innerHTML = '';
             
-            sitesArray.forEach(site => {
+            if (sitesToRender.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <i class="fas fa-search" style="font-size: 50px; color: var(--text-secondary); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--text-secondary);">Nenhum site encontrado</h3>
+                        <p style="color: var(--text-secondary);">Tente ajustar sua pesquisa ou filtro</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            sitesToRender.forEach((site, index) => {
                 const siteElement = document.createElement('div');
-                siteElement.className = 'site-item';
+                siteElement.className = 'site-card';
+                siteElement.style.animationDelay = `${0.1 + (index * 0.1)}s`;
                 siteElement.innerHTML = `
                     <div class="site-icon">
-                        <img src="${site.icon}" alt="${site.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/110?text=Ícone+Indisponível'">
+                        <img src="${site.icon}" alt="${site.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1006/1006771.png'">
                     </div>
-                    <div class="site-name">${site.name}</div>
-                    <div class="site-desc">${site.desc}</div>
+                    <div class="site-content">
+                        <div class="site-name">
+                            ${site.name}
+                            ${site.category === 'jogos' ? '<span class="site-badge">JOGO</span>' : ''}
+                            ${site.category === 'ferramentas' ? '<span class="site-badge">FERRAMENTA</span>' : ''}
+                        </div>
+                        <div class="site-desc">${site.desc}</div>
+                        <div class="site-action">
+                            <a href="${site.url}" target="_blank" class="site-btn">Acessar</a>
+                        </div>
+                    </div>
                 `;
-                
-                siteElement.addEventListener('click', () => {
-                    window.open(site.url, '_blank');
-                });
                 
                 grid.appendChild(siteElement);
             });
         }
 
-        // Função de pesquisa
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            const filteredSites = sites.filter(site => 
-                site.name.toLowerCase().includes(searchTerm) || 
-                site.desc.toLowerCase().includes(searchTerm)
-            );
+        // Filtrar sites por categoria
+        function filterSites() {
+            let filteredSites = sites;
+            
+            if (currentCategory !== 'all') {
+                filteredSites = sites.filter(site => site.category === currentCategory);
+            }
+            
+            // Aplicar pesquisa também se houver
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                filteredSites = filteredSites.filter(site => 
+                    site.name.toLowerCase().includes(searchTerm) || 
+                    site.desc.toLowerCase().includes(searchTerm)
+                );
+            }
+            
             renderSites(filteredSites);
-        });
+        }
 
-        // Abrir overlays
-        sacBtn.addEventListener('click', () => {
-            sacOverlay.classList.add('active');
-        });
-
-        configBtn.addEventListener('click', () => {
-            configOverlay.classList.add('active');
-        });
-
-        premiumBtn.addEventListener('click', () => {
-            premiumOverlay.classList.add('active');
-        });
-
-        // Fechar overlays
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                sacOverlay.classList.remove('active');
-                configOverlay.classList.remove('active');
-                premiumOverlay.classList.remove('active');
+        // Inicializar a aplicação
+        function init() {
+            // Renderizar sites iniciais
+            filterSites();
+            
+            // Adicionar event listeners para categorias
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    filterSites();
+                });
             });
-        });
+            
+            // Adicionar event listener para pesquisa
+            document.getElementById('searchInput').addEventListener('input', filterSites);
+        }
 
-        // Fechar overlay clicando fora do modal
-        [sacOverlay, configOverlay, premiumOverlay].forEach(overlay => {
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    overlay.classList.remove('active');
-                }
-            });
-        });
-
-        // Seleção de idioma
-        languageOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                languageOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                
-                // Aqui você pode implementar a mudança de idioma
-                const selectedLang = option.getAttribute('data-lang');
-                console.log(`Idioma selecionado: ${selectedLang}`);
-                // Em uma implementação real, você trocaria todo o texto da página
-            });
-        });
-
-        // Inicializar a renderização dos sites
-        renderSites(sites);
+        // Iniciar quando o documento estiver carregado
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
