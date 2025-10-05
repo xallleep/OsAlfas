@@ -8,19 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0a12;
-            --secondary: #151521;
-            --accent: #d4af37;
-            --accent-gradient: linear-gradient(135deg, #d4af37 0%, #f8e9a9 100%);
-            --accent-gradient-hover: linear-gradient(135deg, #e6c04d 0%, #f9edb8 100%);
-            --text: #f5f5f7;
-            --text-secondary: #aaaaaa;
-            --card-bg: #1a1a27;
-            --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.7);
+            --primary: #ffffff;
+            --secondary: #f5f5f5;
+            --accent: #ee4d2d;
+            --accent-light: #ff7337;
+            --text: #333333;
+            --text-secondary: #757575;
+            --text-light: #9e9e9e;
+            --card-bg: #ffffff;
+            --card-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+            --card-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
             --transition: all 0.3s ease;
-            --transition-slow: all 0.5s ease;
-            --border-radius: 16px;
+            --border-radius: 8px;
+            --header-height: 60px;
         }
 
         * {
@@ -31,13 +31,9 @@
         }
 
         body {
-            background: var(--primary);
+            background: var(--secondary);
             color: var(--text);
             min-height: 100vh;
-            background-image: 
-                radial-gradient(circle at 10% 10%, rgba(212, 175, 55, 0.15) 0%, transparent 25%),
-                radial-gradient(circle at 90% 90%, rgba(212, 175, 55, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 50% 50%, rgba(30, 30, 50, 0.8) 0%, transparent 50%);
             padding-bottom: 20px;
             overflow-x: hidden;
         }
@@ -45,159 +41,68 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 15px;
         }
 
-        /* Header */
+        /* Header estilo Shopee */
         header {
-            text-align: center;
-            padding: 30px 0;
-            margin-bottom: 20px;
-            position: relative;
+            background: var(--accent);
+            height: var(--header-height);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 3px;
-            background: var(--accent-gradient);
-            border-radius: 3px;
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            padding: 0 15px;
         }
 
         .logo {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-            position: relative;
+            gap: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
         }
 
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent-gradient);
-            border-radius: 15px;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            color: #000;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-            transition: var(--transition);
-            position: relative;
-            z-index: 1;
+            color: var(--accent);
+            font-size: 18px;
         }
 
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--accent-gradient);
-            border-radius: 17px;
-            z-index: -1;
-            opacity: 0.7;
-            filter: blur(5px);
-        }
-
-        .logo:hover .logo-icon {
-            transform: rotate(5deg) scale(1.05);
-        }
-
-        .logo-text {
-            font-weight: 800;
-            font-size: 36px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-            letter-spacing: 1px;
-            position: relative;
-        }
-
-        .logo-text::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s ease;
-        }
-
-        .logo:hover .logo-text::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .slogan {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        /* Search */
         .search-container {
-            max-width: 650px;
-            margin: 0 auto 40px;
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 20px;
             position: relative;
         }
 
         .search-box {
-            background: var(--secondary);
-            border-radius: 50px;
-            padding: 18px 30px;
+            background: white;
+            border-radius: 4px;
+            padding: 8px 15px;
             display: flex;
             align-items: center;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .search-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: var(--transition-slow);
-        }
-
-        .search-box:focus-within {
-            border-color: var(--accent);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .search-box:focus-within::before {
-            left: 100%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .search-box i {
-            color: var(--accent);
-            font-size: 22px;
-            margin-right: 20px;
-            transition: var(--transition);
-        }
-
-        .search-box:focus-within i {
-            transform: scale(1.1);
+            color: var(--text-light);
+            margin-right: 10px;
+            font-size: 16px;
         }
 
         .search-box input {
@@ -205,239 +110,218 @@
             border: none;
             color: var(--text);
             width: 100%;
-            font-size: 17px;
+            font-size: 14px;
             outline: none;
-            font-weight: 500;
         }
 
         .search-box input::placeholder {
-            color: var(--text-secondary);
+            color: var(--text-light);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .user-actions i {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Banner */
+        .banner {
+            margin: 15px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 150px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(30deg);
         }
 
         /* Categories */
         .categories {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding: 5px 0;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
         }
 
         .category-btn {
-            padding: 12px 25px;
-            background: var(--secondary);
+            padding: 8px 16px;
+            background: var(--card-bg);
             border: none;
-            border-radius: 30px;
+            border-radius: 20px;
             color: var(--text);
             cursor: pointer;
             transition: var(--transition);
-            font-weight: 600;
-            font-size: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: var(--card-shadow);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: var(--accent-gradient);
-            transition: var(--transition);
-            z-index: -1;
-            border-radius: 30px;
+        .category-btn.active {
+            background: var(--accent);
+            color: white;
         }
 
-        .category-btn:hover::before, 
-        .category-btn.active::before {
-            width: 100%;
-        }
-
-        .category-btn.active, .category-btn:hover {
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        /* Sites Grid - DUAS COLUNAS */
-        .sites-grid {
+        /* Products Grid - Estilo Shopee */
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 10px;
             margin-bottom: 40px;
         }
 
-        .site-card {
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .product-card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
             overflow: hidden;
             transition: var(--transition);
             box-shadow: var(--card-shadow);
             position: relative;
-            height: 140px;
-            display: flex;
-            border: 1px solid rgba(255, 255, 255, 0.05);
             cursor: pointer;
         }
 
-        .site-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-gradient);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: 0;
-        }
-
-        .site-card:hover {
-            transform: translateY(-8px);
+        .product-card:hover {
+            transform: translateY(-5px);
             box-shadow: var(--card-shadow-hover);
-            border-color: rgba(212, 175, 55, 0.4);
         }
 
-        .site-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .site-icon {
-            width: 90px;
-            height: 100%;
+        .product-image {
+            width: 100%;
+            height: 160px;
+            background: var(--secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
             position: relative;
-            z-index: 1;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
             transition: var(--transition);
         }
 
-        .site-card:hover .site-icon {
+        .product-card:hover .product-image img {
             transform: scale(1.05);
         }
 
-        .site-icon img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 12px;
-            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.3));
-            transition: var(--transition);
+        .product-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--accent);
+            color: white;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 10px;
+            font-weight: 600;
         }
 
-        .site-card:hover .site-icon img {
-            filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.4));
+        .product-info {
+            padding: 10px;
         }
 
-        .site-content {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .site-name {
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .site-badge {
-            background: var(--accent-gradient);
-            color: #000;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 700;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .site-desc {
-            color: var(--text-secondary);
+        .product-name {
+            font-weight: 500;
             font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
-        .site-action {
+        .product-category {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .product-action {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 5px;
         }
 
-        .site-btn {
-            padding: 10px 20px;
-            background: var(--accent-gradient);
-            color: #000;
+        .product-btn {
+            padding: 6px 12px;
+            background: var(--accent);
+            color: white;
             border: none;
-            border-radius: 20px;
-            font-weight: 700;
+            border-radius: 4px;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
-            font-size: 13px;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .site-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: var(--accent-gradient-hover);
-            transition: var(--transition);
-            z-index: -1;
-            border-radius: 20px;
+        .product-btn:hover {
+            background: var(--accent-light);
         }
 
-        .site-btn:hover::before {
-            width: 100%;
-        }
-
-        .site-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.4);
+        .product-btn i {
+            font-size: 10px;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px 0;
             color: var(--text-secondary);
-            font-size: 15px;
-            position: relative;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 2px;
-            background: var(--accent-gradient);
-            border-radius: 2px;
+            font-size: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         /* Animations */
@@ -446,130 +330,48 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .site-card {
-            animation: fadeIn 0.6s ease forwards;
+        .product-card {
+            animation: fadeIn 0.5s ease forwards;
             opacity: 0;
         }
 
-        .site-card:nth-child(1) { animation-delay: 0.1s; }
-        .site-card:nth-child(2) { animation-delay: 0.2s; }
-        .site-card:nth-child(3) { animation-delay: 0.3s; }
-        .site-card:nth-child(4) { animation-delay: 0.4s; }
-        .site-card:nth-child(5) { animation-delay: 0.5s; }
-        .site-card:nth-child(6) { animation-delay: 0.6s; }
-        .site-card:nth-child(7) { animation-delay: 0.7s; }
-        .site-card:nth-child(8) { animation-delay: 0.8s; }
-        .site-card:nth-child(9) { animation-delay: 0.9s; }
-        .site-card:nth-child(10) { animation-delay: 1.0s; }
+        .product-card:nth-child(1) { animation-delay: 0.05s; }
+        .product-card:nth-child(2) { animation-delay: 0.1s; }
+        .product-card:nth-child(3) { animation-delay: 0.15s; }
+        .product-card:nth-child(4) { animation-delay: 0.2s; }
+        .product-card:nth-child(5) { animation-delay: 0.25s; }
+        .product-card:nth-child(6) { animation-delay: 0.3s; }
+        .product-card:nth-child(7) { animation-delay: 0.35s; }
+        .product-card:nth-child(8) { animation-delay: 0.4s; }
+        .product-card:nth-child(9) { animation-delay: 0.45s; }
+        .product-card:nth-child(10) { animation-delay: 0.5s; }
 
-        /* Loading animation for cards */
-        .loading {
-            position: relative;
-            overflow: hidden;
+        /* Empty State */
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px 20px;
         }
 
-        .loading::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: loading 1.5s infinite;
+        .empty-state i {
+            font-size: 60px;
+            color: var(--text-light);
+            margin-bottom: 20px;
         }
 
-        @keyframes loading {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .empty-state h3 {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .sites-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo-text {
-                font-size: 28px;
-            }
-            
-            .logo-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-            
-            .site-card {
-                height: 130px;
-            }
-            
-            .site-icon {
-                width: 80px;
-                padding: 15px;
-            }
-            
-            .site-content {
-                padding: 15px;
-            }
-            
-            .site-name {
-                font-size: 17px;
-            }
-            
-            .site-desc {
-                font-size: 13px;
-            }
-            
-            .search-box {
-                padding: 15px 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .categories {
-                gap: 10px;
-            }
-            
-            .category-btn {
-                padding: 10px 18px;
-                font-size: 13px;
-            }
-            
-            .logo-text {
-                font-size: 24px;
-            }
-            
-            .slogan {
-                font-size: 15px;
-            }
-            
-            .site-card {
-                height: 120px;
-            }
-            
-            .site-icon {
-                width: 70px;
-            }
-            
-            .site-btn {
-                padding: 8px 16px;
-                font-size: 12px;
-            }
+        .empty-state p {
+            color: var(--text-light);
         }
 
         /* Scrollbar customization */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -577,244 +379,67 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--accent-gradient);
-            border-radius: 4px;
+            background: var(--accent);
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-gradient-hover);
-        }
-
-        /* NOVOS ESTILOS ADICIONADOS */
-        
-        /* Efeito de partículas no fundo */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 15s infinite linear;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-        
-        /* Efeito de brilho nos cards */
-        .site-card::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--accent-gradient);
-            border-radius: var(--border-radius);
-            z-index: -1;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .site-card:hover::after {
-            opacity: 0.2;
-            filter: blur(10px);
-        }
-        
-        /* Indicador de categoria ativa */
-        .category-indicator {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: var(--accent-gradient);
-            border-radius: 3px;
-            transition: var(--transition);
-        }
-        
-        .category-btn.active .category-indicator {
-            width: 30px;
-        }
-        
-        /* Efeito de digitação no slogan */
-        .slogan {
-            position: relative;
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end);
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        /* Efeito de brilho pulsante no logo */
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: var(--accent-gradient);
-            border-radius: 20px;
-            z-index: -2;
-            opacity: 0;
-            animation: pulse-glow 3s infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0% { opacity: 0; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.05); }
-            100% { opacity: 0; transform: scale(1); }
-        }
-        
-        /* Melhorias na responsividade */
-        @media (max-width: 768px) {
-            .sites-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .site-card {
-                height: auto;
-                min-height: 120px;
-            }
-            
-            .site-icon {
-                width: 70px;
-            }
-        }
-        
-        /* Efeito de gradiente animado no fundo */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: linear-gradient(-45deg, #0a0a12, #151521, #1a1a27, #0f0f1a);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-        
-        /* Contador de sites */
-        .sites-counter {
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-        
-        .sites-counter span {
-            color: var(--accent);
-            font-weight: bold;
+            background: var(--accent-light);
         }
     </style>
 </head>
 <body>
-    <!-- Fundo animado -->
-    <div class="animated-bg"></div>
-    
-    <!-- Partículas -->
-    <div class="particles" id="particles"></div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <span>OS ALFAS</span>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Pesquisar jogos, ferramentas..." id="searchInput">
+                    </div>
+                </div>
+                
+                <div class="user-actions">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </header>
     
     <div class="container">
-        <header>
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <div class="logo-text">OS ALFAS</div>
-            </div>
-            <p class="slogan">Seus jogos, ferramentas e utilidades em um só lugar</p>
-        </header>
-        
-        <div class="sites-counter">
-            Descubra <span id="sitesCount">0</span> recursos incríveis
-        </div>
-        
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Pesquisar jogos, ferramentas..." id="searchInput">
-            </div>
+        <div class="banner">
+            Seus jogos, ferramentas e utilidades em um só lugar
         </div>
         
         <div class="categories">
-            <button class="category-btn active" data-category="all">
-                Todos
-                <div class="category-indicator"></div>
-            </button>
-            <button class="category-btn" data-category="jogos">
-                Jogos
-                <div class="category-indicator"></div>
-            </button>
-            <button class="category-btn" data-category="ferramentas">
-                Ferramentas
-                <div class="category-indicator"></div>
-            </button>
-            <button class="category-btn" data-category="utilidades">
-                Utilidades
-                <div class="category-indicator"></div>
-            </button>
+            <button class="category-btn active" data-category="all">Todos</button>
+            <button class="category-btn" data-category="jogos">Jogos</button>
+            <button class="category-btn" data-category="ferramentas">Ferramentas</button>
+            <button class="category-btn" data-category="utilidades">Utilidades</button>
         </div>
         
-        <div class="sites-grid" id="sitesGrid">
-            <!-- Sites serão carregados via JavaScript -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Produtos serão carregados via JavaScript -->
         </div>
     </div>
     
     <footer>
-        <p>© 2023 Os Alfas - Todos os direitos reservados</p>
+        <div class="container">
+            <p>© 2023 Os Alfas - Todos os direitos reservados</p>
+        </div>
     </footer>
 
     <script>
-        // ==================== CONFIGURAÇÃO DOS SITES ====================
-        // ADICIONE SEUS NOVOS SITES AQUI - É MUITO FÁCIL!
-        // Basta copiar e colar um dos blocos abaixo e editar as informações
-        
-        const sites = [
-            // JOGOS
+        // Dados dos produtos
+        const products = [
             {
                 name: "Mina",
                 icon: "https://cdn.pixabay.com/photo/2020/01/11/14/32/bomb-4757693_1280.png",
@@ -843,8 +468,6 @@
                 url: "https://xallleep.github.io/Select/",
                 category: "jogos"
             },
-            
-            // FERRAMENTAS
             {
                 name: "CalculaJuros",
                 icon: "https://cdn.pixabay.com/photo/2021/09/20/08/52/calculator-6640217_1280.png",
@@ -859,8 +482,6 @@
                 url: "https://xallleep.github.io/Loto-Palpites/",
                 category: "ferramentas"
             },
-            
-            // UTILIDADES
             {
                 name: "Canal YouTube",
                 icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
@@ -877,7 +498,7 @@
             },
             {
                 name: "TopCasinos",
-                icon: "https://imgs.search.brave.com/1vRAGydFb0Jy_WMOQJ2fQFGoxJoV0dqkVCkcZcHjm3U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNDgx/OTA3NDYyL3Bob3Rv/L29ubGluZS1jYXNp/bm8tY29uY2VwdC1t/b2JpbGUtcGhvbmUt/c2xvdC1tYWNoaW5l/LWRpY2UtYW5kLWNh/cmQuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPUlndmJyYzRD/Z3dRdTdCMHBHYkMw/bEpYTlRQeGdkXzEx/bzhXTzZFdUExVkk9",
+                icon: "https://imgs.search.brave.com/1vRAGydFb0Jy_WMOQJ2fQFGoxJoV0dqkVCkcZcHjm3U/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRpYS5pc3RvY2twaG90by5jb20vaWQvNDgxOTA3NDYyL3Bob3RvL29ubGluZS1jYXNpbm8tY29uY2VwdC1tb2JpbGUtcGhvbmUtc2xvdC1tYWNoaW5lLWRpY2UtYW5kLWNhcmQuanBnP3M9NjEyeDYxMiZ3PTAmaz0yMCZjPUlndmJyYzRDZ3dRdTdCMHBHYkMwbEpYTlRQeGdkXzExbzhXTzZFdUExVkk9",
                 desc: "Os melhores Casinos do mundo",
                 url: "https://xallleep.github.io/Alfabet/",
                 category: "utilidades"
@@ -889,125 +510,83 @@
                 url: "https://xallleep.github.io/LojaAlfa/",
                 category: "utilidades"
             }
-            
-            // PARA ADICIONAR NOVOS SITES:
-            // 1. Copie o bloco completo abaixo (incluindo as chaves {})
-            // 2. Cole antes do ]; final
-            // 3. Altere os dados conforme necessário
-            /*
-            ,
-            {
-                name: "NOME DO SITE",
-                icon: "URL_DO_ICONE",
-                desc: "DESCRIÇÃO CURTA",
-                url: "URL_DO_SITE",
-                category: "jogos/ferramentas/utilidades"
-            }
-            */
         ];
-        
-        // ==================== CÓDIGO PRINCIPAL ====================
-        // (Não é necessário alterar nada daqui para baixo)
-        
+
         // Variáveis globais
         let currentCategory = 'all';
 
-        // Renderizar sites
-        function renderSites(sitesToRender) {
-            const grid = document.getElementById('sitesGrid');
+        // Renderizar produtos
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             
-            if (sitesToRender.length === 0) {
+            if (productsToRender.length === 0) {
                 grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px;">
-                        <i class="fas fa-search" style="font-size: 60px; color: var(--text-secondary); margin-bottom: 20px;"></i>
-                        <h3 style="color: var(--text-secondary); margin-bottom: 10px;">Nenhum site encontrado</h3>
-                        <p style="color: var(--text-secondary);">Tente ajustar sua pesquisa ou filtro</p>
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>Nenhum produto encontrado</h3>
+                        <p>Tente ajustar sua pesquisa ou filtro</p>
                     </div>
                 `;
                 return;
             }
             
-            sitesToRender.forEach((site, index) => {
-                const siteElement = document.createElement('div');
-                siteElement.className = 'site-card';
-                siteElement.style.animationDelay = `${0.1 + (index * 0.1)}s`;
-                siteElement.innerHTML = `
-                    <div class="site-icon">
-                        <img src="${site.icon}" alt="${site.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1006/1006771.png'">
+            productsToRender.forEach((product, index) => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-card';
+                productElement.style.animationDelay = `${0.05 + (index * 0.05)}s`;
+                
+                // Determinar badge baseado na categoria
+                let badgeText = '';
+                if (product.category === 'jogos') badgeText = 'JOGO';
+                if (product.category === 'ferramentas') badgeText = 'FERRAMENTA';
+                if (product.category === 'utilidades') badgeText = 'UTILIDADE';
+                
+                productElement.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.icon}" alt="${product.name}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1006/1006771.png'">
+                        ${badgeText ? `<div class="product-badge">${badgeText}</div>` : ''}
                     </div>
-                    <div class="site-content">
-                        <div class="site-name">
-                            ${site.name}
-                            ${site.category === 'jogos' ? '<span class="site-badge">JOGO</span>' : ''}
-                            ${site.category === 'ferramentas' ? '<span class="site-badge">FERRAMENTA</span>' : ''}
-                        </div>
-                        <div class="site-desc">${site.desc}</div>
-                        <div class="site-action">
-                            <a href="${site.url}" target="_blank" class="site-btn">Acessar</a>
+                    <div class="product-info">
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-category">${product.desc}</div>
+                        <div class="product-action">
+                            <a href="${product.url}" target="_blank" class="product-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                Acessar
+                            </a>
                         </div>
                     </div>
                 `;
                 
-                grid.appendChild(siteElement);
+                grid.appendChild(productElement);
             });
-            
-            // Atualizar contador
-            document.getElementById('sitesCount').textContent = sitesToRender.length;
         }
 
-        // Filtrar sites por categoria
-        function filterSites() {
-            let filteredSites = sites;
+        // Filtrar produtos por categoria
+        function filterProducts() {
+            let filteredProducts = products;
             
             if (currentCategory !== 'all') {
-                filteredSites = sites.filter(site => site.category === currentCategory);
+                filteredProducts = products.filter(product => product.category === currentCategory);
             }
             
             // Aplicar pesquisa também se houver
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             if (searchTerm) {
-                filteredSites = filteredSites.filter(site => 
-                    site.name.toLowerCase().includes(searchTerm) || 
-                    site.desc.toLowerCase().includes(searchTerm)
+                filteredProducts = filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.desc.toLowerCase().includes(searchTerm)
                 );
             }
             
-            renderSites(filteredSites);
-        }
-
-        // Criar partículas
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Posição aleatória
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Tamanho aleatório
-                const size = Math.random() * 3 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Atraso aleatório na animação
-                particle.style.animationDelay = `${Math.random() * 15}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
+            renderProducts(filteredProducts);
         }
 
         // Inicializar a aplicação
         function init() {
-            // Criar partículas
-            createParticles();
-            
-            // Renderizar sites iniciais
-            filterSites();
+            // Renderizar produtos iniciais
+            filterProducts();
             
             // Adicionar event listeners para categorias
             document.querySelectorAll('.category-btn').forEach(btn => {
@@ -1015,12 +594,12 @@
                     document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentCategory = this.getAttribute('data-category');
-                    filterSites();
+                    filterProducts();
                 });
             });
             
             // Adicionar event listener para pesquisa
-            document.getElementById('searchInput').addEventListener('input', filterSites);
+            document.getElementById('searchInput').addEventListener('input', filterProducts);
         }
 
         // Iniciar quando o documento estiver carregado
