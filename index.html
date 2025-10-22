@@ -71,6 +71,22 @@
             font-size: 20px;
         }
 
+        .logo-image {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .logo-icon {
             width: 36px;
             height: 36px;
@@ -393,8 +409,9 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-crown"></i>
+                    <div class="logo-image">
+                        <!-- Adicione sua logo aqui -->
+                        <img src="logo.png" alt="Logo Os Alfas">
                     </div>
                     <span>OS ALFAS</span>
                 </div>
@@ -438,13 +455,27 @@
     </footer>
 
     <script>
-        // Dados dos produtos
+        // Dados dos produtos - ORDEM ATUALIZADA
         const products = [
             {
-                name: "Mina",
-                icon: "https://cdn.pixabay.com/photo/2020/01/11/14/32/bomb-4757693_1280.png",
-                desc: "Jogo das minas emocionante",
-                url: "https://xallleep.github.io/Mina/",
+                name: "TopCasinos",
+                icon: "https://imgs.search.brave.com/LkPqMGQBWCkCkZuwmqSM0nm1LKZfBMy1lPZv7J0xvmM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/Y2FzaW5vLWZyYW1l/LWlsbHVzdHJhdGlv/bl8xMjg0LTExMzYw/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA",
+                desc: "Os melhores Casinos do mundo",
+                url: "https://xallleep.github.io/Alfabet/",
+                category: "utilidades"
+            },
+            {
+                name: "Alfa Loto",
+                icon: "https://cdn.pixabay.com/photo/2019/03/20/05/34/graphic-4067697_1280.png",
+                desc: "Números da sorte para lotofácil",
+                url: "https://xallleep.github.io/Loto-Palpites/",
+                category: "ferramentas"
+            },
+            {
+                name: "Tetris",
+                icon: "https://cdn.pixabay.com/photo/2017/01/31/19/35/building-blocks-2026726_1280.png",
+                desc: "Alfa Tetris classico",
+                url: "https://xallleep.github.io/AlfaTeatris/",
                 category: "jogos"
             },
             {
@@ -455,10 +486,10 @@
                 category: "jogos"
             },
             {
-                name: "Tetris",
-                icon: "https://cdn.pixabay.com/photo/2017/01/31/19/35/building-blocks-2026726_1280.png",
-                desc: "Alfa Tetris classico",
-                url: "https://xallleep.github.io/AlfaTeatris/",
+                name: "Mina",
+                icon: "https://cdn.pixabay.com/photo/2020/01/11/14/32/bomb-4757693_1280.png",
+                desc: "Jogo das minas emocionante",
+                url: "https://xallleep.github.io/Mina/",
                 category: "jogos"
             },
             {
@@ -476,13 +507,6 @@
                 category: "ferramentas"
             },
             {
-                name: "Alfa Loto",
-                icon: "https://cdn.pixabay.com/photo/2019/03/20/05/34/graphic-4067697_1280.png",
-                desc: "Números da sorte para lotofácil",
-                url: "https://xallleep.github.io/Loto-Palpites/",
-                category: "ferramentas"
-            },
-            {
                 name: "Canal YouTube",
                 icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
                 desc: "Mistérios Pelo Mundo - Se inscreva!",
@@ -494,13 +518,6 @@
                 icon: "https://cdn.pixabay.com/photo/2015/06/16/14/13/icon-811223_1280.jpg",
                 desc: "Faça sua parte, doe e ajude",
                 url: "https://xallleep.github.io/Doe/",
-                category: "utilidades"
-            },
-            {
-                name: "TopCasinos",
-                icon: "https://imgs.search.brave.com/LkPqMGQBWCkCkZuwmqSM0nm1LKZfBMy1lPZv7J0xvmM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/Y2FzaW5vLWZyYW1l/LWlsbHVzdHJhdGlv/bl8xMjg0LTExMzYw/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA",
-                desc: "Os melhores Casinos do mundo",
-                url: "https://xallleep.github.io/Alfabet/",
                 category: "utilidades"
             },
             {
